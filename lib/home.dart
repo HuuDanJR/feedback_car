@@ -11,6 +11,7 @@ import 'package:tournament_client/lib/bar_chart_race.dart';
 import 'package:tournament_client/lib/getx/controller.get.dart';
 import 'package:tournament_client/utils/mycolors.dart';
 import 'package:tournament_client/widget/snackbar.custom.dart';
+import 'dart:math' as math;
 
 class MyHomePage extends StatefulWidget {
   MyHomePage(
@@ -37,6 +38,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    //gerenate data
+    // generateGoodRandomData(3, 10);
+    // generateGoodRandomData2(3, 10);
+
     super.initState();
     socket = IO.io('${widget.url}', <String, dynamic>{
       'transports': ['websocket'],
@@ -159,22 +164,33 @@ class _MyHomePageState extends State<MyHomePage> {
                   onRefresh: _refresh,
                   child: Stack(
                     children: [
-                     
                       BarChartRace(
                         selectedIndex: widget.selectedIndex,
                         // index: 1,
                         // index: selectedIndex,
-                        index: detect(
-                            widget.selectedIndex!.toDouble(), formattedData[0]),
+                        index: detect(widget.selectedIndex!.toDouble(), formattedData[0]),
                         data: convertData(formattedData),
+                        // data: generateGoodRandomData2(2, 6),
                         initialPlayState: true,
                         // columnsColor: changeList(detect(1, formattedData[0])),
                         // columnsColor: colorList,
                         // columnsColor: shuffleColorList(),
-                        framesPerSecond: 90,
-                        framesBetweenTwoStates: 90,
+                        framesPerSecond: 40,
+                        framesBetweenTwoStates: 40,
                         numberOfRactanglesToShow: formattedData[0].length,
                         title: "DYNAMIC RANKING",
+                        // columnsLabel: [
+                        //   "Amazon",
+                        //   "Google",
+                        //   "Apple",
+                        //   "Coca",
+                        //   "Huawei",
+                        //   "Sony",
+                        //   'Pepsi',
+                        //   "Samsung",
+                        //   "Netflix",
+                        //   "Facebook",
+                        // ],
                         columnsLabel: formattedData[0]
                             .map((value) =>
                                 'PLAYER ${value < 10 ? '0$value' : value.toStringAsFixed(0)}')
@@ -192,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontSize: 32,
                         ),
                       ),
-                       Positioned(
+                      Positioned(
                           bottom: 24,
                           right: 24,
                           child: Text('YOU ARE PLAYER ${widget.selectedIndex}',
@@ -264,7 +280,7 @@ List<List<double>> convertData(data) {
     // print('convert data 3: $data ');
     return [data[1], data.last];
   }
-  // print('convert data : $data ');
+  print('convert data : $data ');
   return data;
 }
 
@@ -328,7 +344,6 @@ List<Color> shuffleColorList() {
   return newList;
 }
 
-
 // [
 //  "Amazon",
 //   "Google",
@@ -341,3 +356,48 @@ List<Color> shuffleColorList() {
 //   "Netflix",
 //   "Facebook",
 // ],
+
+List<List<double>> generateGoodRandomData(int nbRows, int nbColumns) {
+  List<List<double>> data =
+      List.generate(nbRows, (index) => List<double>.filled(nbColumns, 0));
+  for (int j = 0; j < nbColumns; j++) {
+    data[0][j] = j * 10.0;
+  
+  }
+  for (int i = 1; i < nbRows; i++) {
+    for (int j = 0; j < nbColumns; j++) {
+      double calculatedValue = data[i - 1][j] +
+          (nbColumns - j) +
+          math.Random().nextDouble() * 20 +
+          (j == 2 ? 10 : 0);
+      data[i][j] = calculatedValue;
+      // print('calculate value: $calculatedValue');
+    }
+  }
+  // print(data);
+  return data;
+}
+
+List<List<double>> generateGoodRandomData2(int nbRows, int nbColumns) {
+  List<List<double>> data =
+      List.generate(nbRows, (index) => List<double>.filled(nbColumns, 0));
+
+  for (int j = 0; j < nbColumns; j++) {
+    data[0][j] = j * 10.0;
+  }
+
+  for (int i = 1; i < nbRows; i++) {
+    for (int j = 0; j < nbColumns; j++) {
+      double calculatedValue = data[i - 1][j] +
+          (nbColumns - j) +
+          math.Random().nextDouble() * 20 +
+          (j == 2 ? 10 : 0);
+      data[i][j] = calculatedValue;
+    }
+
+    // Shuffle the values in the current row
+    data[i].shuffle();
+  }
+  // print('data shufffe $data');
+  return data;
+}

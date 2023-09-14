@@ -34,12 +34,12 @@ dependencies:
   dio: ^5.3.2
   flutter:
     sdk: flutter
+  flutter_spinkit: ^5.2.0
   fluttertoast: ^8.2.2
   get: ^4.6.5
   google_fonts: ^5.1.0
   intl: ^0.18.1
   socket_io_client: ^2.0.3+1
-  syncfusion_flutter_charts: ^22.2.9
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -62,11 +62,23 @@ flutter:
     - asset/three.gif
     - asset/silver.png
     - asset/medal.png
+    - asset/bg.png
     - asset/winner.png
     - asset/no_image.png
     - asset/image/logo_renew.png
+    - asset/image/logo_beige.png
     - asset/image/logo_new.png
     - asset/image/background.png
+    - asset/image/love.png
+    - asset/image/sad.png
+    - asset/image/sad1.png
+    - asset/image/sad2.png
+    - asset/image/sad3.png
+    - asset/image/sad4.png
+    - asset/image/good1.png
+    - asset/image/good2.png
+    - asset/image/good3.png
+    - asset/image/good4.png
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

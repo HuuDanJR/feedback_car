@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tournament_client/lib/bar_chart_race.dart';
 import 'package:tournament_client/utils/mycolors.dart';
-import 'package:tournament_client/race_chart_page.dart';
 
 Widget barcharcustom(data) {
   return BarChartRace(
     data: data,
     index: 1,
+    rectangleHeight: 45,
+    selectedIndex: 1,
     initialPlayState: true,
     columnsColor: [
       Color(0xFFFF9900),

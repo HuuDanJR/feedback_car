@@ -1,6 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:tournament_client/home.dart';
+import 'package:tournament_client/lib/models/driver.dart';
+import 'package:tournament_client/lib/models/feedback.dart';
+import 'package:tournament_client/lib/service/server_api.dart';
 import 'package:tournament_client/utils/mycolors.dart';
+import 'package:tournament_client/utils/padding.dart';
+import 'package:tournament_client/widget/custompress.button.dart';
+import 'package:tournament_client/widget/driver_body.dart';
+import 'package:tournament_client/widget/listview.dart';
+import 'package:tournament_client/widget/shadermask_text.dart';
+import 'package:tournament_client/widget/text.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
@@ -9,15 +19,13 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage> {
   final TextEditingController controller = TextEditingController(text: '');
-  final TextEditingController controllerUrl =
-      TextEditingController(text: 'http://localhost:8090');
+  final TextEditingController controllerUrl = TextEditingController(text: '');
   bool isDialogVisible = true;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
+  final ServiceAPIs service_api = ServiceAPIs();
   @override
   void initState() {
     super.initState();
-    controllerUrl.text = 'http://localhost:8090';
   }
 
   @override
@@ -27,135 +35,50 @@ class _WelcomePageState extends State<WelcomePage> {
 
     return Scaffold(
       body: Container(
+        padding: const EdgeInsets.symmetric(
+            vertical: padding32, horizontal: padding64),
         height: height,
         width: width,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.black,
-              Colors.black87,
-            ],
-            stops: [
-              0.0,
-              0.75,
-            ], // Adjust the stops to control the gradient effect
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            filterQuality: FilterQuality.low,
+            image: AssetImage('asset/bg.png'),
+            fit: BoxFit.cover,
           ),
-          // image: DecorationImage(
-          //   filterQuality: FilterQuality.low,
-          //   image: AssetImage('asset/image/background.png'),
-          //   fit: BoxFit.cover, // Make the image cover the entire container
-          // ),
         ),
-        child: Stack(
-          children: [
-            Positioned(
-                top: 12,
-                left: 12,
-                child: Container(
-                  alignment: Alignment.center,
-                  width: 135,
-                  height: 55,
-                  decoration: BoxDecoration(
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Column(
+            children: [
+               Container(
+                  alignment: Alignment.topCenter,
+                  width: 100,
+                  height: 35,
+                  decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('asset/image/logo_new.png'),
+                          image: AssetImage('asset/image/logo_beige.png'),
                           fit: BoxFit.contain)),
-                )),
-            // MyHomePage(title: 'tournament page',selectedIndex: 0,),
-            if (isDialogVisible)
-              AlertDialog(
-                backgroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(10.0), // Set border radius
-                ),
-                title: Text('Player Setting'),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextField(
-                      controller: controller,
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 4.0),
-                        hintText: 'Enter player number (1-10)',
-                      ),
-                    ),
-                    TextField(
-                      controller: controllerUrl,
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 4.0),
-                        hintText: 'Enter host',
-                      ),
-                    ),
-                  ],
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      
-                      if (controller.text.isNotEmpty) {
-                        int? number = int.tryParse(controller.text);
-                        if (number != null && number >= 1 && number <= 10) {
-                          setState(() {
-                            isDialogVisible = false; // Hide the dialog
-                          });
-                          final snackBar = SnackBar(
-                              duration: Duration(seconds: 1),
-                              backgroundColor: MyColor.black_text,
-                              content: Text(
-                                'You chose as player ${controller.text}',
-                                style: TextStyle(
-                                    fontFamily: 'OpenSan',
-                                    fontSize: 16,
-                                    color: MyColor.white),
-                              ));
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                          // The text is a valid number within the range 1-10
-                          // Do something with the number here
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => MyHomePage(
-                                  url: "${controllerUrl.text}",
-                                  title: 'Tournament Client',
-                                  selectedIndex: int.parse(controller.text))));
-                        } else {
-                          final snackBar = SnackBar(
-                              backgroundColor: MyColor.black_text,
-                              content: Text(
-                                'Please input number from 1-10',
-                                style: TextStyle(
-                                    fontFamily: 'OpenSan',
-                                    fontSize: 16,
-                                    color: MyColor.white),
-                              ));
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        }
-                      }
-                    },
-                    child: Text('Confirm'),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        isDialogVisible = false; // Hide the dialog
-                      });
-                    },
-                    child: Text('Close'),
-                  ),
-                ],
               ),
-          ],
+              const SizedBox(height: padding32),
+               textcustom(
+                    text: 'CUSTOMER FEEDBACK ON CAR SERVICE',
+                    size: 26,
+                    isBold: true,
+                    color: MyColor.black_text),
+              
+              textcustom2(
+                  text: 'Choose your driver to start giving your feedback',
+                  size: 18,
+                  isBold: false,
+                  color: MyColor.black_text),
+              const SizedBox(
+                height: padding32,
+              ),
+              driver_body(width, height * .75),
+            ],
+          ),
         ),
       ),
     );
   }
-}
-
-void showInSnackBar(String value, _scaffoldKey) {
-  _scaffoldKey.currentState
-      .showSnackBar(new SnackBar(content: new Text(value)));
 }

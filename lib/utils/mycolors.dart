@@ -35,6 +35,9 @@ class MyColor {
   static final Color yellow_bg = Color(0xFFFFF9C4);
   static final Color yellow2 = Color(0xffFAD02C);
   static final Color yellow3 = Color(0xffFFC107);
+  static final Color yellowAccent = Color(0xffCCA75D);
+
+
   static final Color yellow_accent = Color(0xFFB2A76B);
   static final Color orange = Color(0xFFFE9433);
   static final Color orang3 = Color(0xFFA98E71);

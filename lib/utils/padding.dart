@@ -1,0 +1,9 @@
+ const double padding72 = 72.0;
+ const double padding64 = 64.0;
+ const double padding56 = 56.0;
+ const double padding48 = 48.0;
+ const double padding32 = 32.0;
+ const double padding16 = 16.0;
+ const double padding24 = 24.0;
+ const double padding08 = 08.0;
+ const double padding04 = 04.0;

@@ -65,18 +65,18 @@ class BarChartRace extends StatefulWidget {
 
   /// the height of the rectangle
   final double rectangleHeight;
-  final int index;
+  final int? index;
   final int? selectedIndex;
 
   const BarChartRace({
     Key? key,
     required this.data,
-    this.selectedIndex,
-    required this.index,
+    required this.selectedIndex,
+     this.index,
     required this.initialPlayState,
-    this.framesPerSecond = 25,
+    this.framesPerSecond = 20,
     this.framesBetweenTwoStates = 40,
-    this.rectangleHeight = 40,
+    this.rectangleHeight = 45,
     this.numberOfRactanglesToShow = 5,
     required this.columnsLabel,
     required this.statesLabel,
@@ -168,8 +168,8 @@ class _BarChartRaceState extends State<BarChartRace> {
                   index: widget.index,
                   currentState: currentData!,
                   numberOfRactanglesToShow: widget.numberOfRactanglesToShow,
-                  rectHeight: widget.rectangleHeight,
-                  // rectHeight: 42.5,
+                  // rectHeight: widget.rectangleHeight,
+                  rectHeight: 42.5,
                   maxValue: currentData![0].maxValue,
                   totalWidth: constraints.maxWidth * .9,
                   title: widget.title,

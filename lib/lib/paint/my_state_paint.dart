@@ -167,16 +167,29 @@ class MyStatePaint extends CustomPainter {
 
   void _drawRectangle(Rectangle rect, Canvas canvas) {
     // draw rectangle
+    // Path path = Path();
+    // double maxHeight = numberOfRactanglesToShow * (rectHeight + spaceBetweenTwoRectangles) -
+    //         spaceBetweenTwoRectangles;
+    // // define postitons of the four corner to draw the rectangle
+    // double x1 = 0,y1 = rect.position * (rectHeight + spaceBetweenTwoRectangles);
+    // // if the rectancles if outside, we don't draw it
+    // if (y1 >= maxHeight) return;
+    // // min is to draw a rectangle partially, (in case it's showning up or hiding)
+    // double x2 = rect.length * maxLength!;
+    // double y2 = min(y1 + rectHeight, maxHeight);
+
+    // draw rectangle
     Path path = Path();
-    double maxHeight = numberOfRactanglesToShow * (rectHeight + spaceBetweenTwoRectangles) -
+    double maxHeight =
+        numberOfRactanglesToShow * (rectHeight + spaceBetweenTwoRectangles) -
             spaceBetweenTwoRectangles;
     // define postitons of the four corner to draw the rectangle
-    double x1 = 0,y1 = rect.position * (rectHeight + spaceBetweenTwoRectangles);
+    double x1 = 0,
+        y1 = rect.position * (rectHeight + spaceBetweenTwoRectangles);
     // if the rectancles if outside, we don't draw it
     if (y1 >= maxHeight) return;
     // min is to draw a rectangle partially, (in case it's showning up or hiding)
-    double x2 = rect.length * maxLength!;
-    double y2 = min(y1 + rectHeight, maxHeight);
+    double x2 = rect.length * maxLength!, y2 = min(y1 + rectHeight, maxHeight);
 
     path.moveTo(x1, y1);
     path.lineTo(x2, y1);
