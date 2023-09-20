@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tournament_client/home.dart';
+import 'package:tournament_client/lib/screens/result_page.dart';
+import 'package:tournament_client/manage.dart';
 import 'package:tournament_client/welcome.dart';
 
 void main() {
@@ -25,10 +27,13 @@ class MyApp extends StatelessWidget {
         ),
         // home: MyHomePage2(title: 'text',),
         // home: BarCharRace(),
+        // home:ManagePage()
+        home:WelcomePage()
         // home: MyHomePage(title: 'homepage',selectedIndex: 2,),
         // home: const MyHomePage2(title: 'Tournament Client'),
         
-        home:WelcomePage()
+        // home:ResultPage(rating: 4,driver:"Steven",id_feedback: '1416d441',)
+        // home:WelcomePage()
         );
   }
 }

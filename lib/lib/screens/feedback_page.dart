@@ -8,6 +8,7 @@ import 'package:tournament_client/lib/service/server_api.dart';
 import 'package:tournament_client/utils/mycolors.dart';
 import 'package:tournament_client/utils/padding.dart';
 import 'package:tournament_client/utils/strings.dart';
+import 'package:tournament_client/widget/cusom_input.dart';
 import 'package:tournament_client/widget/custompress.button.dart';
 import 'package:tournament_client/widget/driver_body.dart';
 import 'package:tournament_client/widget/listview.dart';
@@ -70,11 +71,20 @@ class _FeedBackPageState extends State<FeedBackPage> {
                       width: 175,
                       height: 175,
                       child: widget.image != null
-                          ? loadingImage(widget.image)
+                          ? loadingImage(networkUrl: widget.image,isCover: true)
                           : const Icon(Icons.person),
                       decoration: BoxDecoration(
-                          color: MyColor.grey_tab_opa,
-                          border: Border.all(color: MyColor.yellow2, width: 1),
+                          gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.1, 0.45, 0.75],
+                      colors: [
+                        MyColor.white,
+                        MyColor.bedge.withOpacity(.75),
+                        MyColor.bedge,
+                      ],
+                    ),
+                          border: Border.all(color: MyColor.grey, width: .5),
                           borderRadius: BorderRadius.circular(175)),
                     ),
                     // Positioned(
@@ -277,28 +287,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
                         const SizedBox(
                           height: padding32,
                         ),
-                        SizedBox(
-                          width: width * 2 / 3,
-                          height: 50,
-                          child: TextField(
-                            controller: controllerInput,
-                            decoration: InputDecoration(
-                              hintText: 'Share your experience (Optional)',
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: MyColor.yellow_accent, width: .5),
-                                  borderRadius:
-                                      BorderRadius.circular(padding24)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: MyColor.red_accent, width: .5),
-                                  borderRadius:
-                                      BorderRadius.circular(padding24)),
-                              filled: true,
-                              fillColor: MyColor.white.withOpacity(.5),
-                            ),
-                          ),
-                        ),
+
+                        customInput(width: width*2/3,controller:controllerInput,hint:"Share your experience (Optional)"),
                         const SizedBox(
                           height: padding48,
                         ),
@@ -321,11 +311,13 @@ class _FeedBackPageState extends State<FeedBackPage> {
                               ).then((value) {
                                 if (value['status'] == true) {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => ResultPage(rating: controllerGetx.starCount.value,),
+                                    builder: (context) => ResultPage(
+                                      id_feedback:value['data']['id'],
+                                      driver:widget.driver,
+                                      rating: controllerGetx.starCount.value,),
                                   ));
                                 } else {
-                                  showToast(
-                                      'Can not create feedback, please try again or contact developer');
+                                  showToast('Can not create feedback, please try again or contact developer');
                                 }
                                 print(value['status']);
                               }).whenComplete(

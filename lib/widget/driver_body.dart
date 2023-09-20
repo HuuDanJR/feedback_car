@@ -49,7 +49,7 @@ Widget driver_body(width, height) {
                         Container(
                           width: 150,
                           height: 100,
-                          child: loadingImage(model!.data[index].image)),
+                          child: loadingImage(networkUrl:model!.data[index].image,isCover: false)),
                         const SizedBox(height: padding04),
                            textcustom(
                             isBold: false,
@@ -71,11 +71,12 @@ Widget driver_body(width, height) {
   );
 }
 
-Widget loadingImage(String? networkUrl) {
+Widget loadingImage({String? networkUrl,isCover}) {
   return ClipOval(
     clipBehavior: Clip.hardEdge,
     child: CachedNetworkImage(
       imageUrl: "$networkUrl",
+      fit:isCover==true?BoxFit.cover: BoxFit.contain,
       placeholder: (context, url) => Transform.scale(
         scale: .25,
         child: SpinKitChasingDots(
