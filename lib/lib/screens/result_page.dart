@@ -31,6 +31,9 @@ class ResultPage extends StatefulWidget {
 class _ResultPageState extends State<ResultPage> {
   final controllerGetx = Get.put(MyGetXController());
   final formatFactory = StringFormat();
+
+  final _formKey = GlobalKey<FormState>();
+
   bool isShow = false;
   final controllerFrom = TextEditingController();
   final controllerCustomerName = TextEditingController();
@@ -107,7 +110,7 @@ class _ResultPageState extends State<ResultPage> {
               //submit more infor UI
               Visibility(
                   visible: isShow == false ? false : true,
-                  child: addMoreInfo(width))
+                  child: addMoreInfo(width, _formKey))
             ],
           ),
         ),
@@ -115,121 +118,164 @@ class _ResultPageState extends State<ResultPage> {
     );
   }
 
-  Widget addMoreInfo(width) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Divider(color: MyColor.grey_tab),
-        const SizedBox(height: padding16),
-        textcustom(text: "Driver Name: ${widget.driver}", size: 18),
-        const SizedBox(height: padding08),
-        textcustom(
-            text:
-                "DateTime: ${formatFactory.formatDateAndTimeFirst(DateTime.now())}",
-            size: 18),
-        const SizedBox(height: padding08),
-        customInput(
-            controller: controllerFrom,
-            hint: "FROM: (enter your destination)",
-            width: width * 2 / 3),
-        const SizedBox(height: padding08),
-        customInput(
-            width: width * 2 / 3,
-            hint: "TO: (enter your destination)",
-            controller: controllerTo),
-        const SizedBox(
-          height: padding08,
-        ),
-        customInput(
-            width: width * 2 / 3,
-            hint: "Customer Name: (enter customer name)",
-            controller: controllerCustomerName),
-        const SizedBox(
-          height: padding08,
-        ),
-        customInput(
-            width: width * 2 / 3,
-            hint: "Membership #: (enter membership number)",
-            controller: controllerMembership),
-        const SizedBox(height: padding16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            customPressButton(
-              padding: padding32,
-              onPress: () {
-                //add more infor about trip
-                print('${controllerFrom.text}');
-                print('${controllerTo.text}');
-                print('${controllerCustomerName.text}');
-                print('${controllerMembership.text}');
-                service_api.updateFeedBack(
-                      id: widget.id_feedback,
-                      driver:widget.driver,
-                      customer_name: controllerCustomerName.text,
-                      customer_number: controllerMembership.text,
-                      from: controllerFrom.text,
-                      to:controllerTo.text,
-                    )
-                    .then((value) {
-                      showToast('${value['message']}');
-                    });
-              },
-              child: Container(
-                alignment: Alignment.center,
-                width: 145,
-                height: 40,
-                decoration: BoxDecoration(
-                    border: Border.all(color: MyColor.black_text, width: .5),
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      stops: [0.1, 0.45, 0.75],
-                      colors: [
-                        MyColor.yellow_gradient1,
-                        MyColor.yellowAccent.withOpacity(.75),
-                        MyColor.yellowAccent,
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(padding32)),
-                child: textcustom(text: 'submit', isBold: true, size: 20),
+  Widget addMoreInfo(width, key) {
+    return Form(
+      key: key,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Divider(color: MyColor.grey_tab),
+          const SizedBox(height: padding16),
+          textcustom(text: "Driver Name: ${widget.driver}", size: 18),
+          const SizedBox(height: padding08),
+          textcustom(
+              text:
+                  "DateTime: ${formatFactory.formatDateAndTimeFirst(DateTime.now())}",
+              size: 18),
+          const SizedBox(height: padding08),
+          customInput(
+              controller: controllerFrom, hint: "From: ", width: width * 2 / 3),
+          const SizedBox(height: padding08),
+          customInput(
+              width: width * 2 / 3, hint: "To: ", controller: controllerTo),
+          const SizedBox(
+            height: padding08,
+          ),
+          customInput(
+              width: width * 2 / 3,
+              hint: "Customer Name: ",
+              controller: controllerCustomerName),
+          const SizedBox(
+            height: padding08,
+          ),
+          customInput(
+              width: width * 2 / 3,
+              hint: "Membership #: ",
+              controller: controllerMembership),
+          // const SizedBox(height: padding08),
+          // textcustom(
+          //     text: validateInput(
+          //         from: controllerFrom.text,
+          //         to: controllerTo.text,
+          //         name: controllerCustomerName.text,
+          //         number: controllerMembership.text)),
+          const SizedBox(height: padding32),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              customPressButton(
+                padding: padding32,
+                onPress: () {
+                  //add more infor about trip
+                  // print('id feedback: ${widget.id_feedback}');
+                  // print('${controllerFrom.text}');
+                  // print('${controllerTo.text}');
+                  // print('${controllerCustomerName.text}');
+                  // print('${controllerMembership.text}');
+                  if (_formKey.currentState!.validate()) {
+                    
+                  }
+
+                  if (validateInput(
+                          from: controllerFrom.text,
+                          to: controllerTo.text,
+                          name: controllerCustomerName.text,
+                          number: controllerMembership.text) ==false) {
+                    showToast('PLEASE FILL ALL INPUT !');
+                  }else{
+                    service_api .updateFeedBack(
+                    id: widget.id_feedback,
+                    driver: widget.driver,
+                    customer_name: controllerCustomerName.text,
+                    customer_number: controllerMembership.text,
+                    from: controllerFrom.text,
+                    to: controllerTo.text,
+                  ).then((value) {
+                    showToast('${value['message']}');
+                    if (value['status'] == true) {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>WelcomePage()));
+                    }
+                  });
+                  }
+                  
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 145,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: MyColor.black_text, width: .5),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        stops: [0.1, 0.45, 0.75],
+                        colors: [
+                          MyColor.yellow_gradient1,
+                          MyColor.yellowAccent.withOpacity(.75),
+                          MyColor.yellowAccent,
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(padding32)),
+                  child: textcustom(text: 'submit', isBold: true, size: 20),
+                ),
               ),
-            ),
-            SizedBox(
-              width: padding24,
-            ),
-            customPressButton(
-              padding: padding32,
-              onPress: () {
-                controllerGetx.resetForm();
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => WelcomePage()));
-              },
-              child: Container(
-                alignment: Alignment.center,
-                width: 145,
-                height: 40,
-                decoration: BoxDecoration(
-                    border: Border.all(color: MyColor.yellowAccent, width: .5),
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      stops: [0.1, 0.45, 0.75],
-                      colors: [
-                        MyColor.white,
-                        MyColor.bedge.withOpacity(.75),
-                        MyColor.bedge,
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(padding32)),
-                child: textcustom(text: 'home >>', isBold: true, size: 20),
-              ),
-            ),
-          ],
-        )
-      ],
+              // SizedBox(
+              //   width: padding24,
+              // ),
+              // customPressButton(
+              //   padding: padding32,
+              //   onPress: () {
+              //     controllerGetx.resetForm();
+              //     Navigator.of(context)
+              //         .push(MaterialPageRoute(builder: (_) => WelcomePage()));
+              //   },
+              //   child: Container(
+              //     alignment: Alignment.center,
+              //     width: 145,
+              //     height: 40,
+              //     decoration: BoxDecoration(
+              //         border: Border.all(color: MyColor.yellowAccent, width: .5),
+              //         gradient: LinearGradient(
+              //           begin: Alignment.topLeft,
+              //           end: Alignment.bottomRight,
+              //           stops: [0.1, 0.45, 0.75],
+              //           colors: [
+              //             MyColor.white,
+              //             MyColor.bedge.withOpacity(.75),
+              //             MyColor.bedge,
+              //           ],
+              //         ),
+              //         borderRadius: BorderRadius.circular(padding32)),
+              //     child: textcustom(text: 'home >>', isBold: true, size: 20),
+              //   ),
+              // ),
+            ],
+          )
+        ],
+      ),
     );
   }
+}
+
+bool validateInput({String? from, String? to, String? name, String? number}) {
+  if (from!.isEmpty || to!.isEmpty || name!.isEmpty || number!.isEmpty) {
+    if (from.isEmpty) {
+      // return 'Please input pick up place (FROM)';
+      return false;
+    } else if (to!.isEmpty) {
+      // return 'Please input customer destination (TO)';
+      return false;
+    } else if (name!.isEmpty) {
+      // return 'Please input customer name';
+      return false;
+    } else if (number!.isEmpty) {
+      // return 'Please input membership number';
+      return false;
+    } else {
+      return true;
+    }
+  }
+  return true;
 }

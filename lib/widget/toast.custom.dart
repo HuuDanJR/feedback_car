@@ -11,6 +11,6 @@ void showToast(String message) {
     webShowClose: true,
     backgroundColor: Colors.grey,
     textColor: Colors.white,
-    fontSize: 16.0,
+    fontSize: 24.0,
   );
 }

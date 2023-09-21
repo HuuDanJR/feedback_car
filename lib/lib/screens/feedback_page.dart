@@ -234,6 +234,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                 ),
                                 commentListChild(
                                     onPress: () {
+                                      print('press comment list child 2');
+
                                       controllerGetx.changeCommentState(2);
                                     },
                                     index: 2,
@@ -251,6 +253,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                 commentListChild(
                                     state: controllerGetx.commentstate3.value,
                                     onPress: () {
+                                      print('press comment list child 3');
+
                                       controllerGetx.changeCommentState(3);
                                       if (controllerGetx.commentstate3 ==
                                           true) {}
@@ -269,6 +273,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                 commentListChild(
                                     state: controllerGetx.commentstate4.value,
                                     onPress: () {
+                                      print('press comment list child 4');
+
                                       controllerGetx.changeCommentState(4);
                                     },
                                     index: 4,

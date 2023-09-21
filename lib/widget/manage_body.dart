@@ -98,7 +98,7 @@ Widget manage_body(width, height) {
                   customPressButton(
                       padding: padding08,
                       onPress: () {
-                        print('click view detail');
+                        // print('click view detail ${model.data[index].datumId}');
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -107,7 +107,7 @@ Widget manage_body(width, height) {
                               content: FutureBuilder(
                                   future: service_api.fetchTripByID(
                                       // '0406139e'
-                                      '${model.data[index].id}'),
+                                      '${model.data[index].datumId}'),
                                   builder: (context, snapshot) {
                                     final TripModel? model = snapshot.data;
                                     if (snapshot.connectionState ==

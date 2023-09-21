@@ -47,14 +47,23 @@ class MyGetXController extends GetxController {
   }
 
   changeCommentState(index) {
-    if (index == 1) {
-      commentstate1.value = !commentstate1.value;
-    } else if (index == 2) {
-      commentstate2.value = !commentstate2.value;
-    } else if (index == 3) {
-      commentstate3.value = !commentstate3.value;
-    } else if (index == 4) {
-      commentstate4.value = !commentstate4.value;
+    if ((commentstate1.value == true && commentstate2.value == true) ||
+        (commentstate2.value == true && commentstate3.value == true) ||
+        (commentstate3.value == true && commentstate4.value == true) ||
+        (commentstate1.value == true && commentstate3.value == true) ||
+        (commentstate1.value == true && commentstate4.value == true) ||
+        (commentstate2.value == true && commentstate4.value == true)) {
+      print('condition reach');
+    } else {
+      if (index == 1) {
+        commentstate1.value = !commentstate1.value;
+      } else if (index == 2) {
+        commentstate2.value = !commentstate2.value;
+      } else if (index == 3) {
+        commentstate3.value = !commentstate3.value;
+      } else if (index == 4) {
+        commentstate4.value = !commentstate4.value;
+      }
     }
   }
 
