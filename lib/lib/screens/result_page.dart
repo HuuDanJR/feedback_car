@@ -42,6 +42,7 @@ class _ResultPageState extends State<ResultPage> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
+    print('star count: ${widget.rating}');
     super.initState();
   }
 
@@ -174,32 +175,33 @@ class _ResultPageState extends State<ResultPage> {
                   // print('${controllerTo.text}');
                   // print('${controllerCustomerName.text}');
                   // print('${controllerMembership.text}');
-                  if (_formKey.currentState!.validate()) {
-                    
-                  }
+                  if (_formKey.currentState!.validate()) {}
 
                   if (validateInput(
                           from: controllerFrom.text,
                           to: controllerTo.text,
                           name: controllerCustomerName.text,
-                          number: controllerMembership.text) ==false) {
+                          number: controllerMembership.text) ==
+                      false) {
                     showToast('PLEASE FILL ALL INPUT !');
-                  }else{
-                    service_api .updateFeedBack(
-                    id: widget.id_feedback,
-                    driver: widget.driver,
-                    customer_name: controllerCustomerName.text,
-                    customer_number: controllerMembership.text,
-                    from: controllerFrom.text,
-                    to: controllerTo.text,
-                  ).then((value) {
-                    showToast('${value['message']}');
-                    if (value['status'] == true) {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>WelcomePage()));
-                    }
-                  });
+                  } else {
+                    service_api
+                        .updateFeedBack(
+                      id: widget.id_feedback,
+                      driver: widget.driver,
+                      customer_name: controllerCustomerName.text,
+                      customer_number: controllerMembership.text,
+                      from: controllerFrom.text,
+                      to: controllerTo.text,
+                    )
+                        .then((value) {
+                      showToast('${value['message']}');
+                      if (value['status'] == true) {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => WelcomePage()));
+                      }
+                    });
                   }
-                  
                 },
                 child: Container(
                   alignment: Alignment.center,

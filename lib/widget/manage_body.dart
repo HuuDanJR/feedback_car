@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tournament_client/lib/models/driver.dart';
 import 'package:tournament_client/lib/models/feedback.dart';
 import 'package:tournament_client/lib/models/trip.dart';
-import 'package:tournament_client/lib/screens/feedback_page.dart';
 import 'package:tournament_client/lib/service/format.factory.dart';
 import 'package:tournament_client/lib/service/server_api.dart';
 import 'package:tournament_client/utils/mycolors.dart';
 import 'package:tournament_client/utils/padding.dart';
-import 'dart:ui_web';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:tournament_client/widget/custompress.button.dart';
-import 'package:tournament_client/widget/listview.dart';
 import 'package:tournament_client/widget/shadermask_text.dart';
 import 'package:tournament_client/widget/text.dart';
 
@@ -60,14 +56,14 @@ Widget manage_body(width, height) {
                           text: '${model.data[index].driver}',
                           icon: Icons.motorcycle),
                       SizedBox(
-                        height: padding04,
+                        height: padding04/2,
                       ),
                       rowIconText(
                           width: width,
                           text: '${model.data[index].content}',
                           icon: Icons.feedback_outlined),
                       SizedBox(
-                        height: padding04,
+                        height: padding04/2,
                       ),
                       rowIconText(
                           width: width,
@@ -76,7 +72,7 @@ Widget manage_body(width, height) {
                           text: '${model.data[index].star}',
                           icon: Icons.star),
                       SizedBox(
-                        height: padding04,
+                        height: padding04/2,
                       ),
                       rowIconText(
                           width: width,
@@ -191,14 +187,14 @@ Widget rowIconText(
                 color: hasColor == true ? color : MyColor.black_text,
               ),
         SizedBox(
-          width: padding08,
+          width: padding04/2,
         ),
         Expanded(
           child: Text(text,
               maxLines: 5,
               softWrap: false,
               style: GoogleFonts.nunitoSans(
-                  fontSize: 17, fontWeight: FontWeight.normal)),
+                  fontSize: 14, fontWeight: FontWeight.normal)),
         )
       ],
     ),

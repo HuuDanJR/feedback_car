@@ -6,12 +6,54 @@ import 'package:tournament_client/lib/models/driver.dart';
 import 'package:tournament_client/lib/models/feedback.dart';
 import 'package:tournament_client/lib/models/trip.dart';
 
-const BASEURL = 'http://localhost:8080/';
+const BASEURL = 'http://192.168.101.58:8080/';
 
 class ServiceAPIs {
   Dio dio = Dio();
 
   Future fetchInit() async {}
+
+  Future<dynamic> exportFeedback()async{
+    final response = await dio.get(
+      '${BASEURL}export_feedback',
+      options: Options(
+        contentType: Headers.jsonContentType,
+        receiveTimeout: Duration(seconds: 10000),
+        sendTimeout: Duration(seconds: 10000),
+        followRedirects: false,
+        validateStatus: (status) {
+          return true;
+        },
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      ),
+    );
+    return (response.data);
+  }
+  Future<void> downloadExcelFile(String fileName) async {
+  final dio = Dio();
+  final url = '${BASEURL}download_excel/$fileName'; // Replace with your server URL
+
+  try {
+    final response = await dio.download(
+      url,
+      './downloads/$fileName', // Specify the local directory where you want to save the downloaded file
+      options: Options(
+        responseType: ResponseType.bytes,
+      ),
+    );
+
+    // Check the response status
+    if (response.statusCode == 200) {
+      print('Download successful');
+    } else {
+      print('Download failed');
+    }
+  } catch (e) {
+    print('Error during download: $e');
+  }
+}
 
   Future<FeedBack> fetchFeedBack() async {
     final response = await dio.get(

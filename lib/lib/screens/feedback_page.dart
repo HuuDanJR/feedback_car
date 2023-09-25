@@ -71,19 +71,20 @@ class _FeedBackPageState extends State<FeedBackPage> {
                       width: 175,
                       height: 175,
                       child: widget.image != null
-                          ? loadingImage(networkUrl: widget.image,isCover: true)
+                          ? loadingImage(
+                              networkUrl: widget.image, isCover: true)
                           : const Icon(Icons.person),
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      stops: [0.1, 0.45, 0.75],
-                      colors: [
-                        MyColor.white,
-                        MyColor.bedge.withOpacity(.75),
-                        MyColor.bedge,
-                      ],
-                    ),
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            stops: [0.1, 0.45, 0.75],
+                            colors: [
+                              MyColor.white,
+                              MyColor.bedge.withOpacity(.75),
+                              MyColor.bedge,
+                            ],
+                          ),
                           border: Border.all(color: MyColor.grey, width: .5),
                           borderRadius: BorderRadius.circular(175)),
                     ),
@@ -294,7 +295,10 @@ class _FeedBackPageState extends State<FeedBackPage> {
                           height: padding32,
                         ),
 
-                        customInput(width: width*2/3,controller:controllerInput,hint:"Share your experience (Optional)"),
+                        customInput(
+                            width: width * 2 / 3,
+                            controller: controllerInput,
+                            hint: "Share your experience (Optional)"),
                         const SizedBox(
                           height: padding48,
                         ),
@@ -308,26 +312,32 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                   'Experiemce:${checkCommentText().toString()}');
                               print('status: ${controllerGetx.starText.value}');
 
-                              service_api.createFeedBack(
+                              service_api
+                                  .createFeedBack(
                                 driver: '${widget.driver}',
                                 star: '${controllerGetx.starCount.value}',
                                 content: '${controllerInput.text}',
                                 experience: checkCommentText(),
                                 status: '${controllerGetx.starText.value}',
-                              ).then((value) {
+                              )
+                                  .then((value) {
                                 if (value['status'] == true) {
                                   Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => ResultPage(
-                                      id_feedback:value['data']['id'],
-                                      driver:widget.driver,
-                                      rating: controllerGetx.starCount.value,),
+                                      id_feedback: value['data']['id'],
+                                      driver: widget.driver,
+                                      rating: controllerGetx.starCount.value,
+                                    ),
                                   ));
                                 } else {
-                                  showToast('Can not create feedback, please try again or contact developer');
+                                  showToast(
+                                      'Can not create feedback, please try again or contact developer');
                                 }
                                 print(value['status']);
-                              }).whenComplete(
-                                      () => print('complete apis create'));
+                              }).whenComplete(() {
+                                print('complete apis create');
+                                controllerGetx.resetForm();
+                              });
                               // Navigator.of(context).push(MaterialPageRoute(
                               //     builder: (_) => ResultPage(rating: 3)));
                             },

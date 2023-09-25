@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         // home: BarCharRace(),
         // home:ManagePage()
         home:WelcomePage()
+        // home:ManagePage()
         // home: MyHomePage(title: 'homepage',selectedIndex: 2,),
         // home: const MyHomePage2(title: 'Tournament Client'),
         

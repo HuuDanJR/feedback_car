@@ -1,16 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:tournament_client/home.dart';
-import 'package:tournament_client/lib/models/driver.dart';
-import 'package:tournament_client/lib/models/feedback.dart';
 import 'package:tournament_client/lib/service/server_api.dart';
 import 'package:tournament_client/utils/mycolors.dart';
 import 'package:tournament_client/utils/padding.dart';
-import 'package:tournament_client/widget/custompress.button.dart';
-import 'package:tournament_client/widget/driver_body.dart';
-import 'package:tournament_client/widget/listview.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'dart:html' as html;
+
 import 'package:tournament_client/widget/manage_body.dart';
-import 'package:tournament_client/widget/shadermask_text.dart';
 import 'package:tournament_client/widget/text.dart';
 
 class ManagePage extends StatefulWidget {
@@ -33,8 +29,19 @@ class _ManagePageState extends State<ManagePage> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+    void openUrlInBrowser(String url) {
+      html.window.open(url, 'Download Link');
+    }
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          service_api.exportFeedback().then((value) {
+            openUrlInBrowser('${BASEURL}download_excel/${value['filePath']}');
+          });
+        },
+        child: Icon(Icons.download_rounded),
+      ),
       body: Container(
         padding: const EdgeInsets.symmetric(
             vertical: padding32, horizontal: padding64),
@@ -51,21 +58,21 @@ class _ManagePageState extends State<ManagePage> {
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             children: [
-               Container(
-                  alignment: Alignment.topCenter,
-                  width: 100,
-                  height: 35,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('asset/image/logo_beige.png'),
-                          fit: BoxFit.contain)),
+              Container(
+                alignment: Alignment.topCenter,
+                width: 100,
+                height: 35,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('asset/image/logo_beige.png'),
+                        fit: BoxFit.contain)),
               ),
               const SizedBox(height: padding32),
-               textcustom(
-                    text: 'CUSTOMER FEEDBACK LIST',
-                    size: 26,
-                    isBold: true,
-                    color: MyColor.black_text),
+              textcustom(
+                  text: 'CUSTOMER FEEDBACK LIST',
+                  size: 26,
+                  isBold: true,
+                  color: MyColor.black_text),
               textcustom2(
                   text: 'all list of customer feedback from driver team',
                   size: 18,

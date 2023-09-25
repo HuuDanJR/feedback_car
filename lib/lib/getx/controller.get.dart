@@ -69,7 +69,7 @@ class MyGetXController extends GetxController {
 
   resetForm() {
     isChooseStar.value = false;
-    starCount.value = 0;
+    // starCount.value = 0;
     commentstate1.value = false;
     commentstate2.value = false;
     commentstate3.value = false;
