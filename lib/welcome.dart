@@ -1,17 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:tournament_client/home.dart';
-import 'package:tournament_client/lib/models/driver.dart';
-import 'package:tournament_client/lib/models/feedback.dart';
+import 'package:tournament_client/classes/language_constant.dart';
 import 'package:tournament_client/lib/service/server_api.dart';
+import 'package:tournament_client/main.dart';
 import 'package:tournament_client/manage.dart';
 import 'package:tournament_client/utils/mycolors.dart';
 import 'package:tournament_client/utils/padding.dart';
 import 'package:tournament_client/widget/cusom_input.dart';
 import 'package:tournament_client/widget/custompress.button.dart';
 import 'package:tournament_client/widget/driver_body.dart';
-import 'package:tournament_client/widget/listview.dart';
-import 'package:tournament_client/widget/shadermask_text.dart';
 import 'package:tournament_client/widget/text.dart';
 import 'package:tournament_client/widget/toast.custom.dart';
 
@@ -68,12 +64,13 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                   const SizedBox(height: padding32),
                   textcustom(
-                      text: 'CUSTOMER FEEDBACK ON CAR SERVICE',
+                      text: '${translation(context).title}',
                       size: 26,
                       isBold: true,
                       color: MyColor.black_text),
+                  // Text(translation(context).personalInformation),
                   textcustom2(
-                      text: 'Choose your driver to start giving your feedback',
+                      text: '${translation(context).subtitle}',
                       size: 18,
                       isBold: false,
                       color: MyColor.black_text),
@@ -85,6 +82,51 @@ class _WelcomePageState extends State<WelcomePage> {
               ),
             ),
           ),
+          //FLAG
+          Positioned(
+              right: padding08,
+              top: padding08,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  GestureDetector(
+                      onTap: () {
+                        print('click english');
+                        MyApp.setLocale(context,Locale('en'));
+                      },
+                      child: Image.asset(
+                        'asset/image/england.png',
+                        scale: 1.5,
+                      )),
+                  const SizedBox(
+                    width: padding16,
+                  ),
+                  GestureDetector(
+                      onTap: () async {
+                        print('click china');
+                        MyApp.setLocale(context,Locale(CHINA));
+                      },
+                      child: Image.asset('asset/image/china.png', scale: 1.5)),
+                  const SizedBox(
+                    width: padding16,
+                  ),
+                  // GestureDetector(
+                  //     onTap: () {
+                  //       print('click japan');
+                  //     },
+                  //     child: Image.asset('asset/image/japan.png', scale: 1.5)),
+                  // const SizedBox(
+                  //   width: padding16,
+                  // ),
+                  GestureDetector(
+                      onTap: () {
+                        print('click korea');
+                        MyApp.setLocale(context,Locale(KOREA));
+                      },
+                      child: Image.asset('asset/image/korea.png', scale: 1.75)),
+                ],
+              )),
+          //END FLAG
           Positioned(
               bottom: padding16,
               right: padding16,
@@ -97,7 +139,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: textcustom(text: 'Manage FB List'),
+                          title: textcustom(text: '${translation(context).dialog_manage_title}'),
                           content: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,12 +148,12 @@ class _WelcomePageState extends State<WelcomePage> {
                             children: <Widget>[
                               customInput(
                                   controller: controllerUser,
-                                  hint: 'Enter user name'),
+                                  hint: '${translation(context).dialog_manage_username_hint}'),
                               SizedBox(height: padding16),
                               customInput(
-                                isPassword: true,
+                                  isPassword: true,
                                   controller: controllerPass,
-                                  hint: "Enter password"),
+                                  hint: "${translation(context).dialog_manage_username_hint}"),
 
                               // Add more widgets as needed
                             ],
@@ -122,7 +164,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                 Navigator.of(context)
                                     .pop(); // Close the AlertDialog
                               },
-                              child: Text('Close'),
+                              child: Text('${translation(context).btn_close}'),
                             ),
                             TextButton(
                               onPressed: () {
@@ -135,7 +177,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                   Navigator.of(context).pop();
                                 }
                               },
-                              child: Text('Submit'),
+                              child: Text('${translation(context).btn_submit}'),
                             ),
                           ],
                         );

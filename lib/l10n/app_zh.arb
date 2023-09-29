@@ -1,0 +1,64 @@
+{
+  "title": "请评价一下维加斯的车辆服务",
+  "subtitle": "请选择负责您的司机",
+
+
+
+
+  "dialog_manage_title":"管理FB列表",
+  "dialog_manage_username_hint":"输入用户名",
+  "dialog_manage_password_hint":"输入密码",  
+  "btn_close":"关闭",  
+  "btn_submit":"提交", 
+
+  "list_feedback_title":"客户反馈清单",
+  "list_feedback_subtitle":"司机团队的所有客户反馈列表",
+
+  "feedback_how_urtrip":"您的旅程怎么样？",
+  "feedback_good":"满意 ",
+  "feedback_bad":"不满意 ",
+  "feedback_perfect":"完美 ",
+
+  "feedback_enjoy":"请告诉一下您选择上边选项的原因",
+
+  "feedback_helpful":"有帮助的司机",
+  "feedback_excellent":"周到的服务",
+  "feedback_expert":"熟练的寻路",
+  "feedback_well":"准备好的车辆",
+
+  "feedback_unhelpful":"没帮助的司机",
+  "feedback_unexcellent":"服务不足",
+  "feedback_unexpert":"不熟练的寻路",
+  "feedback_unwell":"车辆准备不足",
+
+
+  "feedback_submit":"完成 >>",
+  "feedback_option_hint":"分享您的经验（可选）",
+
+
+  "result_feedback_good":"真心感谢您抽出时间分享您的经验 维加斯的车辆服务对顾客有帮助，我们也感到很有意义 希望下次再见",
+  "result_feedback_bad":"真心感谢您抽出时间分享您的经验 为了改善车辆服务， 顾客的宝贵意见已传达给维加斯管理层 希望下次再见",
+
+
+
+
+  "homePage": "Home Page",
+  "personalInformation": "Personal Information",
+  "name": "Name",
+  "nameHint": "Enter your name",
+  "email": "Email",
+  "emailHint": "Enter your email",
+  "dateOfBirth": "Date of Birth",
+  "requiredField": "Required Field",
+  "submitInfo": "Submit Info",
+  "aboutUs": "About Us",
+  "settings": "Settings",
+  "changeLanguage": "Change Language",
+  "about": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+
+
+
+
+
+  
+}

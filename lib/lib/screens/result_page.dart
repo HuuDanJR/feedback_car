@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tournament_client/classes/language_constant.dart';
 import 'package:tournament_client/lib/getx/controller.get.dart';
 import 'package:tournament_client/lib/service/format.factory.dart';
 import 'package:tournament_client/lib/service/server_api.dart';
@@ -88,7 +89,7 @@ class _ResultPageState extends State<ResultPage> {
               Container(
                 width: width * 2 / 3,
                 child: textcustom_center(
-                    text: widget.rating! <= 2 ? resultbad : resultgood,
+                    text: widget.rating! <= 2 ? '${translation(context).result_feedback_bad}' : '${translation(context).result_feedback_good}',
                     size: 18,
                     isBold: false,
                     color: MyColor.black_text),
@@ -131,8 +132,7 @@ class _ResultPageState extends State<ResultPage> {
           textcustom(text: "Driver Name: ${widget.driver}", size: 18),
           const SizedBox(height: padding08),
           textcustom(
-              text:
-                  "DateTime: ${formatFactory.formatDateAndTimeFirst(DateTime.now())}",
+              text:"DateTime: ${formatFactory.formatDateAndTimeFirst(DateTime.now())}",
               size: 18),
           const SizedBox(height: padding08),
           customInput(

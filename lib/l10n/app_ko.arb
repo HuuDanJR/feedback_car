@@ -1,0 +1,58 @@
+{
+  "title": "베가스 차량 서비스에 대해 평가해 주세요",
+  "subtitle": "피드백 제공을 시작하려면 드라이버를 선택하세요.",
+
+
+
+  "dialog_manage_title":"FB 목록 관리",
+  "dialog_manage_username_hint":"사용자 이름을 입력하세요",
+  "dialog_manage_password_hint":"암호를 입력",  
+  "btn_close":"닫다",  
+  "btn_submit":"제출하다", 
+
+  "list_feedback_title":"고객 피드백 목록",
+  "list_feedback_subtitle":"드라이버 팀의 모든 고객 피드백 목록",
+
+  "feedback_how_urtrip":"여정은 어떠셨나요?",
+  "feedback_good":"만족  ",
+  "feedback_bad":"불만 ",
+  "feedback_perfect":"완벽 ",
+
+  "feedback_enjoy":"위와 같이 선택하신 이유에 대해 알려주세요",
+  "feedback_helpful":"협조적인 드라이버",
+  "feedback_excellent":"뛰어난 서비스",
+  "feedback_expert":"숙련된 길찾기",
+  "feedback_well":"잘 준비된 차량",
+
+  "feedback_unhelpful":"비협조적인 드라이버",
+  "feedback_unexcellent":"부족한 서비스",
+  "feedback_unexpert":"서투른 길찾기",
+  "feedback_unwell":"미숙한 차량준비",
+
+
+  "feedback_submit":"완성 >>",
+  "feedback_option_hint":"경험을 공유하세요(선택사항)",
+
+
+  "result_feedback_good":"시간을 내어 고객님의 경험을 공유해 주셔서 진심으로 감사드립니다. 저희의 차량 서비스가 고객님께 도움이 되어 저희도 큰 보람을 느낍니다. 그럼 다음에 또 뵙도록 하겠습니다. ",
+  "result_feedback_bad":"시간을 내어 고객님의 경험을 공유해 주셔서 진심으로 감사드립니다. 고객님의 소중한 의견은 차량 서비스 개선을 위해 베가스 경영진에 전달되었습니다. ",
+
+
+
+
+
+
+  "homePage": "Home Page",
+  "personalInformation": "Personal Information",
+  "name": "Name",
+  "nameHint": "Enter your name",
+  "email": "Email",
+  "emailHint": "Enter your email",
+  "dateOfBirth": "Date of Birth",
+  "requiredField": "Required Field",
+  "submitInfo": "Submit Info",
+  "aboutUs": "About Us",
+  "settings": "Settings",
+  "changeLanguage": "Change Language",
+  "about": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+}

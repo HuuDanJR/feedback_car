@@ -1,0 +1,58 @@
+{
+  "title": "CUSTOMER FEEDBACK ON CAR SERVICE",
+  "subtitle": "Select a driver to start providing feedback.",
+
+
+  "dialog_manage_title":"Manage FB List",
+  "dialog_manage_username_hint":"Enter user name",
+  "dialog_manage_password_hint":"Enter password",  
+  "btn_close":"Close",  
+  "btn_submit":"Submit",  
+
+
+  "list_feedback_title":"CUSTOMER FEEDBACK LIST",
+  "list_feedback_subtitle":"all list of customer feedback from driver team",
+
+  "feedback_how_urtrip":"How was your trip?",
+  "feedback_good":"GOOD",
+  "feedback_bad":"BAD",
+  "feedback_perfect":"PERFECT",
+
+
+  "feedback_enjoy":"Enjoy the ride?",
+  "feedback_helpful":"Helpful Driver",
+  "feedback_excellent":"Excellent Service",
+  "feedback_expert":"Expert Navigator",
+  "feedback_well":"Well Prepare",
+
+  "feedback_unhelpful":"Unhelpful Driver",
+  "feedback_unexcellent":"Bad Service",
+  "feedback_unexpert":"Bad Navigator",
+  "feedback_unwell":"Badly Prepare",
+
+
+  "feedback_submit":"Submit >>",
+  "feedback_option_hint":"Share your experience (Optional)",
+
+
+  "result_feedback_good":"Thank you for taking the time to share your experience with us.\n\nYour feedback is highly appreciated and has been passed on to our management team to improve the service.",
+  "result_feedback_bad":"Thank you for taking the time to share your experience with us.\n\nWe are glad that you enjoyed our service and look forward to welcoming you again at Vegas Club",
+
+
+
+
+
+  "homePage": "Home Page",
+  "personalInformation": "Personal Information",
+  "name": "Name",
+  "nameHint": "Enter your name",
+  "email": "Email",
+  "emailHint": "Enter your email",
+  "dateOfBirth": "Date of Birth",
+  "requiredField": "Required Field",
+  "submitInfo": "Submit Info",
+  "aboutUs": "About Us",
+  "settings": "Settings",
+  "changeLanguage": "Change Language",
+  "about": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+}

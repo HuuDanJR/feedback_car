@@ -54,7 +54,36 @@ class MyGetXController extends GetxController {
         (commentstate1.value == true && commentstate4.value == true) ||
         (commentstate2.value == true && commentstate4.value == true)) {
       print('condition reach');
+      if (commentstate1.value == true && commentstate2.value == true) {
+        if (index == 1) {
+          commentstate1.value = !commentstate1.value;
+        } else if (index == 2) {
+          commentstate2.value = !commentstate2.value;
+        }
+      }
+      if (commentstate1.value == true && commentstate3.value == true) {
+        if (index == 1) {
+          commentstate1.value = !commentstate1.value;
+        } else if (index == 3) {
+          commentstate3.value = !commentstate3.value;
+        }
+      }
+      if (commentstate1.value == true && commentstate4.value == true) {
+        if (index == 1) {
+          commentstate1.value = !commentstate1.value;
+        } else if (index == 4) {
+          commentstate4.value = !commentstate4.value;
+        }
+      }
+      if (commentstate2.value == true && commentstate2.value == true) {
+        if (index == 2) {
+          commentstate2.value = !commentstate2.value;
+        } else if (index == 3) {
+          commentstate3.value = !commentstate3.value;
+        }
+      }
     } else {
+      print('condition NOT reach');
       if (index == 1) {
         commentstate1.value = !commentstate1.value;
       } else if (index == 2) {
@@ -65,11 +94,23 @@ class MyGetXController extends GetxController {
         commentstate4.value = !commentstate4.value;
       }
     }
+
+    //  if (index == 1) {
+    //     commentstate1.value = !commentstate1.value;
+    //   } else if (index == 2) {
+    //     commentstate2.value = !commentstate2.value;
+    //   } else if (index == 3) {
+    //     commentstate3.value = !commentstate3.value;
+    //   } else if (index == 4) {
+    //     commentstate4.value = !commentstate4.value;
+    //   }
   }
 
   resetForm() {
     isChooseStar.value = false;
     // starCount.value = 0;
+    starText.value = '';
+
     commentstate1.value = false;
     commentstate2.value = false;
     commentstate3.value = false;
@@ -81,7 +122,8 @@ class MyGetXController extends GetxController {
     star3.value = false;
     star4.value = false;
     star5.value = false;
-    starText.value = '';
+
+    update();
   }
 
   changeStarState(index) {

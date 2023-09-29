@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tournament_client/classes/language_constant.dart';
 import 'package:tournament_client/lib/getx/controller.get.dart';
 import 'package:tournament_client/lib/screens/feedback_page/comment_child.dart';
 import 'package:tournament_client/lib/screens/feedback_page/start_child.dart';
@@ -104,8 +105,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
                           icon: const Icon(Icons.arrow_back_ios),
                           onPressed: () {
                             print('navigator back ');
-                            Navigator.of(context).pop();
                             controllerGetx.resetForm();
+                            Navigator.of(context).pop();
                           },
                         ))
                   ],
@@ -121,7 +122,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
                 height: padding48,
               ),
               textcustom2(
-                  text: 'How was your trip?',
+                  text: '${translation(context).feedback_how_urtrip}',
                   size: 18,
                   isBold: false,
                   color: MyColor.black_text),
@@ -183,7 +184,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
               ),
               Obx(
                 () => textcustom2(
-                    text: '${controllerGetx.starText.value}',
+                    text:controllerGetx.starText.value=="GOOD" ? '${translation(context).feedback_good}' : controllerGetx.starText.value=="BAD" ? '${translation(context).feedback_bad}':  controllerGetx.starText.value=="PERFECT" ? '${translation(context).feedback_perfect}' : "",
                     size: 18,
                     isBold: true,
                     color: MyColor.black_text),
@@ -199,7 +200,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
                           height: padding64,
                         ),
                         textcustom2(
-                            text: 'Enjoy the ride?',
+                            text: '${translation(context).feedback_enjoy}',
                             size: 18,
                             isBold: false,
                             color: MyColor.black_text),
@@ -228,8 +229,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                             ? 'asset/image/sad1.png'
                                             : 'asset/image/good1.png',
                                     text: controllerGetx.starText.value == 'BAD'
-                                        ? "${commentbad1}"
-                                        : '${commentgood1}'),
+                                        ? "${translation(context).feedback_unhelpful}"
+                                        : '${translation(context).feedback_helpful}'),
                                 const SizedBox(
                                   width: padding24,
                                 ),
@@ -246,8 +247,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                             ? 'asset/image/sad2.png'
                                             : 'asset/image/good2.png',
                                     text: controllerGetx.starText.value == 'BAD'
-                                        ? "${commentbad2}"
-                                        : '${commentgood2}'),
+                                        ? "${translation(context).feedback_unexcellent}"
+                                        : '${translation(context).feedback_excellent}'),
                                 const SizedBox(
                                   width: padding24,
                                 ),
@@ -266,8 +267,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                             ? 'asset/image/sad3.png'
                                             : 'asset/image/good3.png',
                                     text: controllerGetx.starText.value == 'BAD'
-                                        ? "${commentbad3}"
-                                        : "${commentgood3}"),
+                                        ? "${translation(context).feedback_unexpert}"
+                                        : "${translation(context).feedback_expert}"),
                                 const SizedBox(
                                   width: padding24,
                                 ),
@@ -284,8 +285,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                             ? 'asset/image/sad4.png'
                                             : 'asset/image/good4.png',
                                     text: controllerGetx.starText.value == 'BAD'
-                                        ? "${commentbad4}"
-                                        : "${commentgood4}"),
+                                        ? "${translation(context).feedback_unwell}"
+                                        : "${translation(context).feedback_well}"),
                               ],
                             ),
                           ),
@@ -298,7 +299,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
                         customInput(
                             width: width * 2 / 3,
                             controller: controllerInput,
-                            hint: "Share your experience (Optional)"),
+                            hint: "${translation(context).feedback_option_hint}"),
                         const SizedBox(
                           height: padding48,
                         ),
@@ -308,8 +309,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
                               print('driver: ${widget.driver}');
                               print('start: ${controllerGetx.starCount.value}');
                               print('content: ${controllerInput.text}');
-                              print(
-                                  'Experiemce:${checkCommentText().toString()}');
+                              print('Experiemce:${checkCommentText().toString()}');
                               print('status: ${controllerGetx.starText.value}');
 
                               service_api
@@ -363,7 +363,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                   borderRadius:
                                       BorderRadius.circular(padding32)),
                               child: textcustom(
-                                  text: 'submit >>', isBold: true, size: 22),
+                                  text: '${translation(context).feedback_submit}', isBold: true, size: 22),
                             )),
                       ],
                     )),

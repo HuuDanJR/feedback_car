@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tournament_client/classes/language_constant.dart';
 import 'package:tournament_client/lib/service/server_api.dart';
 import 'package:tournament_client/utils/mycolors.dart';
 import 'package:tournament_client/utils/padding.dart';
@@ -69,12 +70,12 @@ class _ManagePageState extends State<ManagePage> {
               ),
               const SizedBox(height: padding32),
               textcustom(
-                  text: 'CUSTOMER FEEDBACK LIST',
+                  text: '${translation(context).list_feedback_title}',
                   size: 26,
                   isBold: true,
                   color: MyColor.black_text),
               textcustom2(
-                  text: 'all list of customer feedback from driver team',
+                  text: '${translation(context).list_feedback_subtitle}',
                   size: 18,
                   isBold: false,
                   color: MyColor.black_text),
