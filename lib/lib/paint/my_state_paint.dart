@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tournament_client/lib/models/rectangle.dart';
-import 'package:tournament_client/service/format.factory.dart';
-import 'package:tournament_client/utils/mycolors.dart';
+import 'package:feedback_driver/lib/models/rectangle.dart';
+import 'package:feedback_driver/utils/mycolors.dart';
 
 class MyStatePaint extends CustomPainter {
   final List<Rectangle> currentState;
@@ -63,7 +62,7 @@ class MyStatePaint extends CustomPainter {
     fontSize: 22.0,
   );
   final TextStyle textStyleLabel = GoogleFonts.bebasNeue(
-    color: Color(0xFFE65100),
+    color: const Color(0xFFE65100),
     fontSize: 22.0,
   );
 
@@ -89,7 +88,7 @@ class MyStatePaint extends CustomPainter {
     // print('access paint $index');
     canvas.translate(xShift, yShift);
     // draw title if not null
-    if (title != null) _drawTitle(canvas, title);
+    _drawTitle(canvas, title);
     // first we draw the line under the ractangles
     _drawLines(canvas);
     // we draw the rectangles
@@ -111,10 +110,8 @@ class MyStatePaint extends CustomPainter {
     // draw current state label
     String stateLabel = currentState[0].stateLabel;
 
-    if (stateLabel != null) {
-      _drawStateLabel(canvas, size, stateLabel);
+    _drawStateLabel(canvas, size, stateLabel);
     }
-  }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
@@ -201,7 +198,7 @@ class MyStatePaint extends CustomPainter {
     // draw value (text)
     String value = rect.value.round().toString();
     if (value.length > 5) {
-      value = value.substring(0, 5) + "..";
+      value = "${value.substring(0, 5)}..";
     }
     textPainter.text = TextSpan(
       text: '\$${(double.parse(value))}',
@@ -212,7 +209,7 @@ class MyStatePaint extends CustomPainter {
     canvas.translate(x2, y1 + 9);
     textPainter.paint(
       canvas,
-      Offset(
+      const Offset(
         5,
         0,
       ),
@@ -222,7 +219,7 @@ class MyStatePaint extends CustomPainter {
     // draw the title for each rectangle
     String label = rect.label;
     if (label.length > 11) {
-      label = label.substring(0, 9) + "..";
+      label = "${label.substring(0, 9)}..";
     }
     textPainter.text = TextSpan(
       text: label,

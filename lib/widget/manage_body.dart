@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tournament_client/lib/models/feedback.dart';
-import 'package:tournament_client/lib/models/trip.dart';
-import 'package:tournament_client/lib/service/format.factory.dart';
-import 'package:tournament_client/lib/service/server_api.dart';
-import 'package:tournament_client/utils/mycolors.dart';
-import 'package:tournament_client/utils/padding.dart';
+import 'package:feedback_driver/lib/models/feedback.dart';
+import 'package:feedback_driver/lib/models/trip.dart';
+import 'package:feedback_driver/lib/service/format.factory.dart';
+import 'package:feedback_driver/lib/service/server_api.dart';
+import 'package:feedback_driver/utils/mycolors.dart';
+import 'package:feedback_driver/utils/padding.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:tournament_client/widget/custompress.button.dart';
-import 'package:tournament_client/widget/shadermask_text.dart';
-import 'package:tournament_client/widget/text.dart';
+import 'package:feedback_driver/widget/custompress.button.dart';
+import 'package:feedback_driver/widget/shadermask_text.dart';
+import 'package:feedback_driver/widget/text.dart';
 
 final service_api = ServiceAPIs();
 final formatString = StringFormat();
@@ -23,7 +23,7 @@ Widget manage_body(width, height) {
         return const Text('loading...');
       }
       if (snapshot.hasError || snapshot.data == null) {
-        return Text('not found feedbacks');
+        return const Text('not found feedbacks');
       }
       return SizedBox(
         width: width,
@@ -33,7 +33,7 @@ Widget manage_body(width, height) {
           itemCount: model!.totalResult,
           itemBuilder: (context, index) {
             return Container(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                   horizontal: padding16, vertical: padding08),
               margin: const EdgeInsets.only(bottom: padding16),
               decoration: BoxDecoration(
@@ -53,16 +53,16 @@ Widget manage_body(width, height) {
                     children: [
                       rowIconText(
                           width: width,
-                          text: '${model.data[index].driver}',
+                          text: model.data[index].driver,
                           icon: Icons.motorcycle),
-                      SizedBox(
+                      const SizedBox(
                         height: padding04/2,
                       ),
                       rowIconText(
                           width: width,
-                          text: '${model.data[index].content}',
+                          text: model.data[index].content,
                           icon: Icons.feedback_outlined),
-                      SizedBox(
+                      const SizedBox(
                         height: padding04/2,
                       ),
                       rowIconText(
@@ -71,7 +71,7 @@ Widget manage_body(width, height) {
                           hasColor: true,
                           text: '${model.data[index].star}',
                           icon: Icons.star),
-                      SizedBox(
+                      const SizedBox(
                         height: padding04/2,
                       ),
                       rowIconText(
@@ -79,15 +79,15 @@ Widget manage_body(width, height) {
                           hasColor: false,
                           hasIcon: false,
                           text:
-                              '${removeOuterSquareBrackets(model.data[index].experience.toString())}',
+                              removeOuterSquareBrackets(model.data[index].experience.toString()),
                           icon: Icons.emoji_emotions),
-                      Divider(),
+                      const Divider(),
                       rowIconText(
                           width: width,
                           hasColor: false,
                           hasIcon: true,
                           text:
-                              '${model.data[index].createdAt}',
+                              model.data[index].createdAt,
                           icon: Icons.date_range_outlined),
                     ],
                   ),
@@ -103,7 +103,7 @@ Widget manage_body(width, height) {
                               content: FutureBuilder(
                                   future: service_api.fetchTripByID(
                                       // '0406139e'
-                                      '${model.data[index].datumId}'),
+                                      model.data[index].datumId),
                                   builder: (context, snapshot) {
                                     final TripModel? model = snapshot.data;
                                     if (snapshot.connectionState ==
@@ -112,7 +112,7 @@ Widget manage_body(width, height) {
                                     }
                                     if (snapshot.hasError ||
                                         snapshot.data == null) {
-                                      return Text('not found trip detail');
+                                      return const Text('not found trip detail');
                                     }
                                     return Column(
                                       mainAxisAlignment:
@@ -122,15 +122,15 @@ Widget manage_body(width, height) {
                                       mainAxisSize: MainAxisSize
                                           .min, // Use min to make the Column only take up the necessary space
                                       children: <Widget>[
-                                        Divider(),
+                                        const Divider(),
                                         Text(
                                             'Customer number: ${model!.data.customerNumber}'),
                                         Text(
-                                            'Customer name: ${model!.data.customerName}'),
-                                        Divider(),
-                                        Text('From: ${model!.data.from}'),
-                                        Text('To: ${model!.data.to}'),
-                                        Divider(),
+                                            'Customer name: ${model.data.customerName}'),
+                                        const Divider(),
+                                        Text('From: ${model.data.from}'),
+                                        Text('To: ${model.data.to}'),
+                                        const Divider(),
                                         Text(
                                             'Datetime: ${(model.data.createdAt)}'),
                                         // Add more widgets as needed
@@ -143,7 +143,7 @@ Widget manage_body(width, height) {
                                     Navigator.of(context)
                                         .pop(); // Close the AlertDialog
                                   },
-                                  child: Text('Close'),
+                                  child: const Text('Close'),
                                 ),
                               ],
                             );
@@ -174,7 +174,7 @@ String removeOuterSquareBrackets(String inputString) {
 
 Widget rowIconText(
     {icon, text, width, hasColor = false, color, hasIcon = true}) {
-  return Container(
+  return SizedBox(
     width: width * .7,
     child: Row(
       mainAxisSize: MainAxisSize.min,
@@ -186,7 +186,7 @@ Widget rowIconText(
                 icon,
                 color: hasColor == true ? color : MyColor.black_text,
               ),
-        SizedBox(
+        const SizedBox(
           width: padding04/2,
         ),
         Expanded(
@@ -209,12 +209,12 @@ Widget loadingImage({String? networkUrl, isCover}) {
       fit: isCover == true ? BoxFit.cover : BoxFit.contain,
       placeholder: (context, url) => Transform.scale(
         scale: .25,
-        child: SpinKitChasingDots(
+        child: const SpinKitChasingDots(
           color: MyColor.grey,
         ),
       ),
       errorWidget: (context, url, error) =>
-          textShaderMask(child: Icon(Icons.person, color: MyColor.grey)),
+          textShaderMask(child: const Icon(Icons.person, color: MyColor.grey)),
     ),
   );
 }

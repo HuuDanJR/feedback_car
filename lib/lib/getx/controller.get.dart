@@ -22,15 +22,7 @@ class MyGetXController extends GetxController {
 
   RxString commentText = ''.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   RxInt playerNumber = 1.obs;
 
@@ -82,15 +74,22 @@ class MyGetXController extends GetxController {
           commentstate3.value = !commentstate3.value;
         }
       }
+      if (commentstate3.value == true && commentstate4.value == true) {
+        if (index == 3) {
+          commentstate3.value = !commentstate3.value;
+        } else if (index == 4) {
+          commentstate4.value = !commentstate4.value;
+        }
+      }
     } else {
       print('condition NOT reach');
       if (index == 1) {
         commentstate1.value = !commentstate1.value;
-      } else if (index == 2) {
+      }  if (index == 2) {
         commentstate2.value = !commentstate2.value;
-      } else if (index == 3) {
+      }  if (index == 3) {
         commentstate3.value = !commentstate3.value;
-      } else if (index == 4) {
+      }  if (index == 4) {
         commentstate4.value = !commentstate4.value;
       }
     }

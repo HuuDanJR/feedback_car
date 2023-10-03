@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tournament_client/classes/language_constant.dart';
-import 'package:tournament_client/welcome.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:feedback_driver/classes/language_constant.dart';
+import 'package:feedback_driver/welcome.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
@@ -52,7 +50,7 @@ class _MyAppState extends State<MyApp> {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         debugShowCheckedModeBanner: false,
-        title: 'Feedback Car Client',
+        title: 'Feedback Driver',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
           useMaterial3: false,
@@ -64,7 +62,8 @@ class _MyAppState extends State<MyApp> {
         // home: MyHomePage2(title: 'text',),
         // home: BarCharRace(),
         // home:ManagePage()
-        home: WelcomePage()
+        home: const WelcomePage(),
+        
         // home:Scaffold(
         //   body:Container(
         //     child: Text(

@@ -1,5 +1,5 @@
+import 'package:feedback_driver/widget/text.dart';
 import 'package:flutter/material.dart';
-import 'package:tournament_client/widget/text.dart';
 
 class TEstPage extends StatefulWidget {
   const TEstPage({super.key});

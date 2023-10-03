@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tournament_client/utils/mycolors.dart';
-import 'package:tournament_client/utils/padding.dart';
-import 'package:tournament_client/widget/custompress.button.dart';
-import 'package:tournament_client/widget/text.dart';
+import 'package:feedback_driver/utils/mycolors.dart';
+import 'package:feedback_driver/utils/padding.dart';
+import 'package:feedback_driver/widget/custompress.button.dart';
+import 'package:feedback_driver/widget/text.dart';
 
 Widget commentListChild(
-    {isActive = false, image, text, index, onPress, bool? state}) {
+    {isActive = false, image, text,int? index, onPress, bool? state}) {
   return Column(
     children: [
       customPressButton(
@@ -18,13 +18,13 @@ Widget commentListChild(
             width: 85,
             height: 90,
             padding: const EdgeInsets.all(padding16),
-            child: Image.asset(
-              '$image',
-              fit: BoxFit.cover,
-            ),
             decoration: BoxDecoration(
               color:state == false ? MyColor.grey_tab_opa : MyColor.yellowAccent,
               borderRadius: BorderRadius.circular(padding16),
+            ),
+            child: Image.asset(
+              '$image',
+              fit: BoxFit.cover,
             )),
       ),
       const SizedBox(

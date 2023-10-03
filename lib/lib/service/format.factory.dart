@@ -31,7 +31,7 @@ class StringFormat {
 
   DateTime formatDateWithTimeReverse(value) {
     DateTime tempDate =
-        new DateFormat("yyyy-MM-dd HH:mm:ss").parse(value);
+        DateFormat("yyyy-MM-dd HH:mm:ss").parse(value);
     return tempDate;
   }
 

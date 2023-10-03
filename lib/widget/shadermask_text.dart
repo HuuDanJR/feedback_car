@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tournament_client/widget/text.dart';
 
 Widget textShaderMask({child}) {
   return ShaderMask(
       blendMode: BlendMode.srcIn,
       shaderCallback: (Rect bounds) {
-        return LinearGradient(
+        return const LinearGradient(
           colors: [
             Color.fromRGBO(173, 120, 44, 1),
             Color.fromRGBO(221, 178, 77, 1),

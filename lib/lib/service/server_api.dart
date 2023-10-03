@@ -1,11 +1,10 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:dio/dio.dart';
-import 'package:tournament_client/lib/models/driver.dart';
-import 'package:tournament_client/lib/models/feedback.dart';
-import 'package:tournament_client/lib/models/trip.dart';
+import 'package:feedback_driver/lib/models/driver.dart';
+import 'package:feedback_driver/lib/models/feedback.dart';
+import 'package:feedback_driver/lib/models/trip.dart';
 
+// const BASEURL = 'http://localhost:8080/';
 const BASEURL = 'http://192.168.101.58:8080/';
 
 class ServiceAPIs {
@@ -18,8 +17,8 @@ class ServiceAPIs {
       '${BASEURL}export_feedback',
       options: Options(
         contentType: Headers.jsonContentType,
-        receiveTimeout: Duration(seconds: 10000),
-        sendTimeout: Duration(seconds: 10000),
+        receiveTimeout: const Duration(seconds: 10000),
+        sendTimeout: const Duration(seconds: 10000),
         followRedirects: false,
         validateStatus: (status) {
           return true;
@@ -60,8 +59,8 @@ class ServiceAPIs {
       '${BASEURL}list_feedback',
       options: Options(
         contentType: Headers.jsonContentType,
-        receiveTimeout: Duration(seconds: 10000),
-        sendTimeout: Duration(seconds: 10000),
+        receiveTimeout: const Duration(seconds: 10000),
+        sendTimeout: const Duration(seconds: 10000),
         followRedirects: false,
         validateStatus: (status) {
           return true;
@@ -107,8 +106,8 @@ class ServiceAPIs {
       '${BASEURL}list_driver',
       options: Options(
         contentType: Headers.jsonContentType,
-        receiveTimeout: Duration(seconds: 10000),
-        sendTimeout: Duration(seconds: 10000),
+        receiveTimeout: const Duration(seconds: 10000),
+        sendTimeout: const Duration(seconds: 10000),
         followRedirects: false,
         validateStatus: (status) {
           return true;
@@ -129,8 +128,8 @@ class ServiceAPIs {
       data: body,
       options: Options(
         contentType: Headers.jsonContentType,
-        receiveTimeout: Duration(seconds: 10000),
-        sendTimeout: Duration(seconds: 10000),
+        receiveTimeout: const Duration(seconds: 10000),
+        sendTimeout: const Duration(seconds: 10000),
         followRedirects: false,
         validateStatus: (status) {
           return true;
@@ -158,8 +157,8 @@ class ServiceAPIs {
         data: body,
         options: Options(
           contentType: Headers.jsonContentType,
-          receiveTimeout: Duration(seconds: 10000),
-          sendTimeout: Duration(seconds: 10000),
+          receiveTimeout: const Duration(seconds: 10000),
+          sendTimeout: const Duration(seconds: 10000),
           followRedirects: false,
           validateStatus: (status) {
             return true;

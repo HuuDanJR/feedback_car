@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tournament_client/utils/mycolors.dart';
+import 'package:feedback_driver/utils/mycolors.dart';
 
-Widget customPressButton({padding,onPress,width,child}){
+Widget customPressButton({double? padding,onPress,double? width,child}){
   return ClipRRect(
-    borderRadius: BorderRadius.circular(padding),
+    borderRadius: BorderRadius.circular(padding!),
     child:  Material(
         color: Colors.transparent,
         child: InkWell(

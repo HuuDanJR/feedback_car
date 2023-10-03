@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tournament_client/classes/language_constant.dart';
-import 'package:tournament_client/lib/getx/controller.get.dart';
-import 'package:tournament_client/lib/service/format.factory.dart';
-import 'package:tournament_client/lib/service/server_api.dart';
-import 'package:tournament_client/utils/mycolors.dart';
-import 'package:tournament_client/utils/padding.dart';
-import 'package:tournament_client/utils/strings.dart';
-import 'package:tournament_client/welcome.dart';
-import 'package:tournament_client/widget/cusom_input.dart';
-import 'package:tournament_client/widget/custompress.button.dart';
-import 'package:tournament_client/widget/driver_body.dart';
-import 'package:tournament_client/widget/shadermask_text.dart';
-import 'package:tournament_client/widget/text.dart';
-import 'package:tournament_client/widget/toast.custom.dart';
+import 'package:feedback_driver/classes/language_constant.dart';
+import 'package:feedback_driver/lib/getx/controller.get.dart';
+import 'package:feedback_driver/lib/service/format.factory.dart';
+import 'package:feedback_driver/utils/mycolors.dart';
+import 'package:feedback_driver/utils/padding.dart';
+import 'package:feedback_driver/welcome.dart';
+import 'package:feedback_driver/widget/cusom_input.dart';
+import 'package:feedback_driver/widget/custompress.button.dart';
+import 'package:feedback_driver/widget/driver_body.dart';
+import 'package:feedback_driver/widget/text.dart';
 
 class ResultPage extends StatefulWidget {
   int? rating;
@@ -21,6 +17,7 @@ class ResultPage extends StatefulWidget {
   String? id_feedback;
 
   ResultPage({
+    super.key,
     required this.rating,
     required this.driver,
     required this.id_feedback,
@@ -44,6 +41,7 @@ class _ResultPageState extends State<ResultPage> {
   @override
   void initState() {
     print('star count: ${widget.rating}');
+    print('init id feedback from prev: ${widget.id_feedback}');
     super.initState();
   }
 
@@ -77,19 +75,21 @@ class _ResultPageState extends State<ResultPage> {
                 padding: const EdgeInsets.all(padding16),
                 width: 115.0,
                 height: 115.0,
-                child: Image.asset(widget.rating! <= 2
-                    ? 'asset/image/sad.png'
-                    : 'asset/image/love.png'),
                 decoration: BoxDecoration(
                     color: MyColor.grey_tab_opa,
                     border: Border.all(color: MyColor.yellow2, width: 1),
                     borderRadius: BorderRadius.circular(150.0)),
+                child: Image.asset(widget.rating! <= 2
+                    ? 'asset/image/sad.png'
+                    : 'asset/image/love.png'),
               ),
               const SizedBox(height: padding32),
-              Container(
+              SizedBox(
                 width: width * 2 / 3,
                 child: textcustom_center(
-                    text: widget.rating! <= 2 ? '${translation(context).result_feedback_bad}' : '${translation(context).result_feedback_good}',
+                    text: widget.rating! <= 2
+                        ? translation(context).result_feedback_bad
+                        : translation(context).result_feedback_good,
                     size: 18,
                     isBold: false,
                     color: MyColor.black_text),
@@ -127,12 +127,13 @@ class _ResultPageState extends State<ResultPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Divider(color: MyColor.grey_tab),
+          const Divider(color: MyColor.grey_tab),
           const SizedBox(height: padding16),
           textcustom(text: "Driver Name: ${widget.driver}", size: 18),
           const SizedBox(height: padding08),
           textcustom(
-              text:"DateTime: ${formatFactory.formatDateAndTimeFirst(DateTime.now())}",
+              text:
+                  "DateTime: ${formatFactory.formatDateAndTimeFirst(DateTime.now())}",
               size: 18),
           const SizedBox(height: padding08),
           customInput(
@@ -183,8 +184,9 @@ class _ResultPageState extends State<ResultPage> {
                           name: controllerCustomerName.text,
                           number: controllerMembership.text) ==
                       false) {
-                    showToast('PLEASE FILL ALL INPUT !');
+                    // showToast('PLEASE FILL ALL INPUT !');
                   } else {
+                    print('id feedback from prev page: ${widget.id_feedback}');
                     service_api
                         .updateFeedBack(
                       id: widget.id_feedback,
@@ -195,10 +197,15 @@ class _ResultPageState extends State<ResultPage> {
                       to: controllerTo.text,
                     )
                         .then((value) {
-                      showToast('${value['message']}');
+                      // showToast('${value['message']}');
                       if (value['status'] == true) {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (_) => WelcomePage()));
+                        // Navigator.of(context).push(
+                        //     MaterialPageRoute(builder: (_) => const WelcomePage()));
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => WelcomePage()),
+                            (Route<dynamic> route) => false);
+                        // Navigator.of(context).pushNamedAndRemoveUntil('/welcome', (Route<dynamic> route) => false);
                       }
                     });
                   }
@@ -212,7 +219,7 @@ class _ResultPageState extends State<ResultPage> {
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
-                        stops: [0.1, 0.45, 0.75],
+                        stops: const [0.1, 0.45, 0.75],
                         colors: [
                           MyColor.yellow_gradient1,
                           MyColor.yellowAccent.withOpacity(.75),

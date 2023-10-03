@@ -124,7 +124,7 @@ class _BarChartRaceCopyState extends State<BarChartRaceCopy> {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-          child:Icon(Icons.refresh),
+          child:const Icon(Icons.refresh),
           onPressed: () {
           _update();
         }),
@@ -175,10 +175,10 @@ class _BarChartRaceCopyState extends State<BarChartRaceCopy> {
         currentData![i].value = before[i].value + valueDiff * k;
         currentData![i].maxValue = before[i].maxValue + maxValueDiff * k;
         // upadte the labels
-        if ((widget.columnsLabel?.length ?? 0) > 0) {
+        if ((widget.columnsLabel.length ?? 0) > 0) {
           currentData![i].label = widget.columnsLabel[i];
         }
-        if ((widget.statesLabel?.length ?? 0) > 0) {
+        if ((widget.statesLabel.length ?? 0) > 0) {
           currentData![i].stateLabel = before[i].stateLabel;
         }
       }

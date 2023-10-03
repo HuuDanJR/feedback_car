@@ -1,15 +1,14 @@
+import 'package:feedback_driver/widget/custompress.button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:tournament_client/lib/models/driver.dart';
-import 'package:tournament_client/lib/screens/feedback_page.dart';
-import 'package:tournament_client/lib/service/server_api.dart';
-import 'package:tournament_client/utils/mycolors.dart';
-import 'package:tournament_client/utils/padding.dart';
-import 'dart:ui_web';
+import 'package:feedback_driver/lib/models/driver.dart';
+import 'package:feedback_driver/lib/screens/feedback_page.dart';
+import 'package:feedback_driver/lib/service/server_api.dart';
+import 'package:feedback_driver/utils/mycolors.dart';
+import 'package:feedback_driver/utils/padding.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:tournament_client/widget/custompress.button.dart';
-import 'package:tournament_client/widget/shadermask_text.dart';
-import 'package:tournament_client/widget/text.dart';
+import 'package:feedback_driver/widget/shadermask_text.dart';
+import 'package:feedback_driver/widget/text.dart';
 
 final service_api = ServiceAPIs();
 Widget driver_body(width, height) {
@@ -21,7 +20,7 @@ Widget driver_body(width, height) {
         return const Text('loading...');
       }
       if (snapshot.hasError || snapshot.data == null) {
-        return Text('not found drivers');
+        return const Text('not found drivers');
       }
       return SizedBox(
         width: width,
@@ -46,15 +45,15 @@ Widget driver_body(width, height) {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          width: 150,
-                          height: 100,
-                          child: loadingImage(networkUrl:model!.data[index].image,isCover: false)),
+                        SizedBox(
+                          width: 150.0,
+                          height: 100.0,
+                          child: loadingImage(networkUrl:model.data[index].image,isCover: false)),
                         const SizedBox(height: padding04),
                            textcustom(
                             isBold: false,
-                            text: '${model!.data[index].name}',
-                            size: 18,
+                            text: model.data[index].name,
+                            size: 18.0,
                           ),
                       ]),
                 ),
@@ -79,11 +78,11 @@ Widget loadingImage({String? networkUrl,isCover}) {
       fit:isCover==true?BoxFit.cover: BoxFit.contain,
       placeholder: (context, url) => Transform.scale(
         scale: .25,
-        child: SpinKitChasingDots(
+        child: const SpinKitChasingDots(
           color: MyColor.grey,
         ),
       ),
-      errorWidget: (context, url, error) => textShaderMask(child: Icon(Icons.person, color: MyColor.grey)),
+      errorWidget: (context, url, error) => textShaderMask(child: const Icon(Icons.person, color: MyColor.grey)),
     ),
   );
 }

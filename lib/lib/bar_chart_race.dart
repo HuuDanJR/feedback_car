@@ -2,8 +2,8 @@ library bar_chart_race;
 
 import "package:flutter/material.dart";
 import 'package:get/get.dart';
-import 'package:tournament_client/lib/getx/controller.get.dart';
-import 'package:tournament_client/utils/mycolors.dart';
+import 'package:feedback_driver/lib/getx/controller.get.dart';
+import 'package:feedback_driver/utils/mycolors.dart';
 import 'dart:math' as math;
 import 'models/rectangle.dart';
 import 'paint/my_state_paint.dart';
@@ -139,7 +139,7 @@ class _BarChartRaceState extends State<BarChartRace> {
       Container(
             height: height,
             width: width,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -341,10 +341,10 @@ class _BarChartRaceState extends State<BarChartRace> {
         currentData![i].value = before[i].value + valueDiff * k;
         currentData![i].maxValue = before[i].maxValue + maxValueDiff * k;
         // upadte the labels
-        if ((widget.columnsLabel?.length ?? 0) > 0) {
+        if ((widget.columnsLabel.length ?? 0) > 0) {
           currentData![i].label = widget.columnsLabel[i];
         }
-        if ((widget.statesLabel?.length ?? 0) > 0) {
+        if ((widget.statesLabel.length ?? 0) > 0) {
           currentData![i].stateLabel = before[i].stateLabel;
         }
       }

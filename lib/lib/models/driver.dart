@@ -2,7 +2,6 @@
 //
 //     final driver = driverFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 Driver driverFromJson(String str) => Driver.fromJson(json.decode(str));

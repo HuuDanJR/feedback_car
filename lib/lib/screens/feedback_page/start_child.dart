@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:tournament_client/utils/mycolors.dart';
-import 'package:tournament_client/widget/custompress.button.dart';
+import 'package:feedback_driver/utils/mycolors.dart';
+import 'package:feedback_driver/widget/custompress.button.dart';
 
 Widget starLineItem({int? index, bool? isActive = false, onPress}) {
   return customPressButton(
