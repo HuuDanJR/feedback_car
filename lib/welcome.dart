@@ -92,7 +92,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   children: [
                     GestureDetector(
                         onTap: () {
-                          print('click english');
+                          // print('click english');
                           MyApp.setLocale(context,const Locale('en'));
                         },
                         child: Image.asset(
@@ -104,7 +104,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                     GestureDetector(
                         onTap: () async {
-                          print('click china');
+                          // print('click china');
                           MyApp.setLocale(context,const Locale(CHINA));
                         },
                         child: Image.asset('asset/image/china.png', scale: 1.5)),

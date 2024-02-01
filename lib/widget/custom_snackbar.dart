@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> customSnackBar({context,String? message}){
    final snackBar = SnackBar(
-    duration: Duration(seconds: 1),
+    duration: const Duration(seconds: 1),
   content: Text('$message!'),
 );
   return   ScaffoldMessenger.of(context).showSnackBar(snackBar);

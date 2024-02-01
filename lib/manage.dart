@@ -4,7 +4,8 @@ import 'package:feedback_driver/lib/service/server_api.dart';
 import 'package:feedback_driver/utils/mycolors.dart';
 import 'package:feedback_driver/utils/padding.dart';
 // import 'dart:html' as html;
-// import 'dart:js';
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 
 import 'package:feedback_driver/widget/manage_body.dart';
 import 'package:feedback_driver/widget/text.dart';
@@ -38,9 +39,11 @@ class _ManagePageState extends State<ManagePage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          service_api.exportFeedback().then((value) {
+          if(kIsWeb){
+            service_api.exportFeedback().then((value) {
             openUrlInBrowser('${BASEURL}download_excel/${value['filePath']}');
           });
+          }
         },
         child: const Icon(Icons.download_rounded),
       ),

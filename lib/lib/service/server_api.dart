@@ -45,9 +45,9 @@ class ServiceAPIs {
 
     // Check the response status
     if (response.statusCode == 200) {
-      print('Download successful');
+      // print('Download successful');
     } else {
-      print('Download failed');
+      // print('Download failed');
     }
   } catch (e) {
     print('Error during download: $e');

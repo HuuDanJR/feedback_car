@@ -7,7 +7,7 @@ Widget starLineItem({int? index, bool? isActive = false, onPress}) {
   return customPressButton(
       padding: 64,
       onPress: () {
-        print('choose $index');
+        // print('choose $index');
         onPress();
       },
       child: Icon(Icons.star,

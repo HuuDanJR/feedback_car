@@ -1,3 +1,4 @@
+import 'package:feedback_driver/service/change_language.dart';
 import 'package:feedback_driver/widget/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,6 +34,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
 
   @override
   void initState() {
+    changeKeyboardLanguage('ko_KR');
+    // changeKeyboardLanguage('zh_CN');
     super.initState();
   }
 
@@ -231,7 +234,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                   commentListChild(
                                       state: controllerGetx.commentstate1.value,
                                       onPress: () {
-                                        print('press comment list child 1');
+                                        // print('press comment list child 1');
                                         controllerGetx.changeCommentState(1);
                                         if (controllerGetx
                                                 .commentstate1.value ==
@@ -253,7 +256,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                   ),
                                   commentListChild(
                                       onPress: () {
-                                        print('press comment list child 2');
+                                        // print('press comment list child 2');
 
                                         controllerGetx.changeCommentState(2);
                                       },
@@ -275,7 +278,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                   commentListChild(
                                       state: controllerGetx.commentstate3.value,
                                       onPress: () {
-                                        print('press comment list child 3');
+                                        // print('press comment list child 3');
 
                                         controllerGetx.changeCommentState(3);
                                         if (controllerGetx.commentstate3 ==
@@ -298,7 +301,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                   commentListChild(
                                       state: controllerGetx.commentstate4.value,
                                       onPress: () {
-                                        print('press comment list child 4');
+                                        // print('press comment list child 4');
 
                                         controllerGetx.changeCommentState(4);
                                       },
@@ -321,6 +324,10 @@ class _FeedBackPageState extends State<FeedBackPage> {
                           ),
 
                           customInputWlanguage(
+                              onTap: () {
+                                print('tab input');
+                                changeKeyboardLanguage('ko_KR');
+                              },
                               width: width * 2 / 3,
                               controller: controllerInput,
                               hint: translation(context).feedback_option_hint),
@@ -329,25 +336,22 @@ class _FeedBackPageState extends State<FeedBackPage> {
                           ),
                           customPressButton(
                               onPress: () {
-                                print('submit');
-                                print('driver: ${widget.driver}');
-                                print(
-                                    'start: ${controllerGetx.starCount.value}');
-                                print('content: ${controllerInput.text}');
-                                print(
-                                    'Experiemce:${checkCommentText().toString()}');
-                                print(
-                                    'status: ${controllerGetx.starText.value}');
+                                // print('submit');
+                                // print('driver: ${widget.driver}');
+                                // print('start: ${controllerGetx.starCount.value}');
+                                // print('content: ${controllerInput.text}');
+                                // print(
+                                //     'Experiemce:${checkCommentText().toString()}');
+                                // print('status: ${controllerGetx.starCount.value}');
 
-                                service_api
-                                    .createFeedBack(
+                                service_api.createFeedBack(
                                   driver: '${widget.driver}',
                                   star: '${controllerGetx.starCount.value}',
                                   content: controllerInput.text.isEmpty
-                                      ? 'no input'
+                                      ? 'empty'
                                       : controllerInput.text,
                                   experience: checkCommentText(),
-                                  status: controllerGetx.starText.value,
+                                  status: controllerGetx.starCount.value == 5 ? "PERFECT" : controllerGetx.starCount.value <=2 ? "BAD" : "GOOD",
                                 )
                                     .then((value) {
                                   if (value['status'] == true) {
@@ -355,7 +359,8 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                         context: context,
                                         message: '${value['message']}');
                                     print('feedback id: ${value['data']['id']}');
-                                    Navigator.of(context).push(MaterialPageRoute(
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
                                       builder: (context) => ResultPage(
                                         id_feedback: value['data']['id'],
                                         driver: widget.driver,
@@ -365,8 +370,7 @@ class _FeedBackPageState extends State<FeedBackPage> {
                                   } else {
                                     customSnackBar(
                                         context: context,
-                                        message:
-                                            'Can not create feedback, please try again or contact developer');
+                                        message:'Can not create feedback, please try again or contact developer');
                                   }
                                   print(value['status']);
                                 }).whenComplete(() {

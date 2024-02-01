@@ -45,7 +45,7 @@ class MyGetXController extends GetxController {
         (commentstate1.value == true && commentstate3.value == true) ||
         (commentstate1.value == true && commentstate4.value == true) ||
         (commentstate2.value == true && commentstate4.value == true)) {
-      print('condition reach');
+      // print('condition reach');
       if (commentstate1.value == true && commentstate2.value == true) {
         if (index == 1) {
           commentstate1.value = !commentstate1.value;
@@ -67,7 +67,7 @@ class MyGetXController extends GetxController {
           commentstate4.value = !commentstate4.value;
         }
       }
-      if (commentstate2.value == true && commentstate2.value == true) {
+      if (commentstate2.value == true && commentstate3.value == true) {
         if (index == 2) {
           commentstate2.value = !commentstate2.value;
         } else if (index == 3) {
@@ -82,7 +82,7 @@ class MyGetXController extends GetxController {
         }
       }
     } else {
-      print('condition NOT reach');
+      // print('condition NOT reach');
       if (index == 1) {
         commentstate1.value = !commentstate1.value;
       }  if (index == 2) {

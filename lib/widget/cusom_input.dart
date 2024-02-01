@@ -1,19 +1,23 @@
-
 import 'package:flutter/material.dart';
 import 'package:feedback_driver/utils/mycolors.dart';
 import 'package:feedback_driver/utils/padding.dart';
-Widget customInputWlanguage({double? width, hint,TextEditingController? controller}){
+
+Widget customInputWlanguage(
+    {double? width, hint, TextEditingController? controller, onTap}) {
   return SizedBox(
-    width: width ,
+    width: width,
     height: 50,
     child: TextFormField(
       controller: controller,
+      onTap: () {
+        onTap();
+      },
       validator: (text) {
-                if (text == null || text.isEmpty) {
-                  return 'Text is empty';
-                }
-                return null;
-              },
+        if (text == null || text.isEmpty) {
+          return 'Text is empty';
+        }
+        return null;
+      },
       decoration: InputDecoration(
         hintText: '$hint',
         // errorText: validatePassword(controller!.text),
@@ -21,10 +25,11 @@ Widget customInputWlanguage({double? width, hint,TextEditingController? controll
         //     borderSide: BorderSide(color: MyColor.red, width:.5),
         //     borderRadius: BorderRadius.circular(padding24)),
         enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: MyColor.yellow_accent, width: .5),
+            borderSide:
+                const BorderSide(color: MyColor.yellow_accent, width: .5),
             borderRadius: BorderRadius.circular(padding24)),
         focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: MyColor.green, width:1),
+            borderSide: const BorderSide(color: MyColor.green, width: 1),
             borderRadius: BorderRadius.circular(padding24)),
         filled: true,
         fillColor: MyColor.white.withOpacity(.5),
@@ -33,34 +38,37 @@ Widget customInputWlanguage({double? width, hint,TextEditingController? controll
   );
 }
 
-
-Widget customInput({double? width, hint,TextEditingController? controller,isPassword=false}) {
+Widget customInput(
+    {double? width,
+    hint,
+    TextEditingController? controller,
+    isPassword = false}) {
   return SizedBox(
-    width: width ,
+    width: width,
     height: 50,
     child: TextFormField(
       controller: controller,
-      
-      obscureText: isPassword==true?true:false,
+      obscureText: isPassword == true ? true : false,
       validator: (text) {
-                if (text == null || text.isEmpty) {
-                  return 'Text is empty';
-                }
-                return null;
-              },
+        if (text == null || text.isEmpty) {
+          return 'Text is empty';
+        }
+        return null;
+      },
       decoration: InputDecoration(
         hintText: '$hint',
-        
+
         // errorText: validatePassword(controller!.text),
-        
+
         // errorBorder: OutlineInputBorder(
         //     borderSide: BorderSide(color: MyColor.red, width:.5),
         //     borderRadius: BorderRadius.circular(padding24)),
         enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: MyColor.yellow_accent, width: .5),
+            borderSide:
+                const BorderSide(color: MyColor.yellow_accent, width: .5),
             borderRadius: BorderRadius.circular(padding24)),
         focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: MyColor.green, width:1),
+            borderSide: const BorderSide(color: MyColor.green, width: 1),
             borderRadius: BorderRadius.circular(padding24)),
         filled: true,
         fillColor: MyColor.white.withOpacity(.5),

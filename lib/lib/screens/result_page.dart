@@ -203,7 +203,7 @@ class _ResultPageState extends State<ResultPage> {
                         //     MaterialPageRoute(builder: (_) => const WelcomePage()));
                         Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
-                                builder: (context) => WelcomePage()),
+                                builder: (context) => const WelcomePage()),
                             (Route<dynamic> route) => false);
                         // Navigator.of(context).pushNamedAndRemoveUntil('/welcome', (Route<dynamic> route) => false);
                       }
